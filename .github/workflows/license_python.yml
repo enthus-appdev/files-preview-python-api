@@ -26,7 +26,8 @@ jobs:
       - name: Check licenses
         run: >
           licensecheck
-          --license LICENSE
+          --license Apache-2.0
           --format markdown
+          --zero
           >> $GITHUB_STEP_SUMMARY
         shell: bash
