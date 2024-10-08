@@ -26,7 +26,7 @@ jobs:
       - name: Check licenses
         run: >
           licensecheck
-          --license GPLv3
+          --license GPL
           --format markdown
           --zero
           >> $GITHUB_STEP_SUMMARY
