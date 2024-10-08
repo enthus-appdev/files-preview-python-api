@@ -1,3 +1,4 @@
+# Setup
 install rye (or any other python pkg manager of choice, you'll have to install the dependencies yourself)
 
 `rye sync`
@@ -7,3 +8,9 @@ install rye (or any other python pkg manager of choice, you'll have to install t
 
 
 `curl -X POST -F "file=@path/to/your/email-file.msg" http://localhost:8082/converter --output output.jpg`
+
+
+# Installing packages
+`rye add <package-name>`
+
+`rye sync`
