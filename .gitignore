@@ -6,5 +6,9 @@ dist/
 wheels/
 *.egg-info
 
+# rye
+requirements.lock
+requirements-dev.lock
+
 # venv
 .venv
