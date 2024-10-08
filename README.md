@@ -1,7 +1,8 @@
 `pip install flask extract-msg Pillow beautifulsoup4`
+(Oder beliebiger python pkg manager, z.B. rye)
 
 
-`python main.py`
+`python src/main.py`
 
 
-`curl -X POST -F "file=@path/to/your/email-file.msg" http://localhost:5000/converter --output output.jpg`
+`curl -X POST -F "file=@path/to/your/email-file.msg" http://localhost:8083/converter --output output.jpg`

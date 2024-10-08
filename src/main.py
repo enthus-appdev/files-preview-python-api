@@ -16,15 +16,10 @@ def convert_html_to_text(html_content):
 
 def extract_email_body_from_msg(msg_file_path):
     """Extract body content from a .msg file."""
+    # TODO might have to handle HTML content as well.
     msg = extract_msg.Message(msg_file_path)
     
-    # Check if the email body is in HTML format
-    if msg.body_is_html:
-        # Convert HTML body to plain text
-        return convert_html_to_text(msg.body)
-    else:
-        # Use the plain text body
-        return msg.body
+    return msg.body
 
 def extract_email_body_from_eml(eml_file_path):
     """Extract body content from a .eml file."""
@@ -47,20 +42,21 @@ def extract_email_body_from_eml(eml_file_path):
 
 def convert_email_to_image(body_content, output_image_path):
     """Convert email body content to an image."""
-    # Set up image dimensions
+    # Set up image
+    ## TODO probably need to adjust these values based on the content
     image_width = 800
+    image_height = 600
     padding = 20
     font = ImageFont.load_default()
 
     # Text wrapping for proper formatting
-    wrapped_text = textwrap.fill(body_content, width=80)
+    wrapped_text = textwrap.fill(body_content, width=100)
 
-    # Estimate height needed for the text
+    # TODO: Calculate the height of the image based on the wrapped text and center text
     dummy_image = Image.new('RGB', (image_width, 1), color=(255, 255, 255))
     draw = ImageDraw.Draw(dummy_image)
-    text_height = draw.textsize(wrapped_text, font=font)[1]
-    num_lines = len(wrapped_text.split('\n'))
-    image_height = padding * 2 + num_lines * text_height
+    # _, _, _, image_height = draw.multiline_textbbox((0, 0), text=wrapped_text, font=font)
+    print(image_width, image_height)
 
     # Create the actual image
     image = Image.new('RGB', (image_width, image_height), color=(255, 255, 255))
@@ -83,6 +79,7 @@ def convert_email():
     if file.filename == '':
         return jsonify({"error": "No selected file"}), 400
 
+    # TODO might have to check file by header instead of extension.
     if file and (file.filename.endswith('.msg') or file.filename.endswith('.eml')):
         filename = file.filename
         file_path = os.path.join('/tmp', filename)
@@ -106,4 +103,4 @@ def convert_email():
     return jsonify({"error": "Unsupported file format"}), 400
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=8082) # TODO change port number via params

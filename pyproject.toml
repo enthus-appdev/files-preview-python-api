@@ -1,0 +1,29 @@
+[project]
+name = "files-preview-python-api"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "Hinne", email = "hinne.stolzenberg@enthus.de" }
+]
+dependencies = [
+    "flask>=3.0.3",
+    "extract-msg>=0.50.0",
+    "pillow>=10.4.0",
+    "beautifulsoup4>=4.12.3",
+]
+readme = "README.md"
+requires-python = ">= 3.8"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src"]
