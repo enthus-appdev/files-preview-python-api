@@ -1,4 +1,4 @@
-install rye (or any other python pkg manager of choice)
+install rye (or any other python pkg manager of choice, you'll have to install the dependencies yourself)
 
 `rye init`
 
