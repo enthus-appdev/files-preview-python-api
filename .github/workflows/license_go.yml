@@ -1,0 +1,32 @@
+name: License Python
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+
+jobs:
+  license-check:
+    runs-on: ubuntu-latest
+    name: License Check
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install licensecheck
+        run: pip install licensecheck
+
+      - name: Check licenses
+        run: >
+          licensecheck
+          --license LICENSE
+          --format markdown
+          >> $GITHUB_STEP_SUMMARY
+        shell: bash
