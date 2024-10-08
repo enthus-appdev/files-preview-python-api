@@ -1,7 +1,5 @@
 install rye (or any other python pkg manager of choice, you'll have to install the dependencies yourself)
 
-`rye init`
-
 `rye sync`
 
 
